@@ -1,0 +1,64 @@
+
+   
+        /* Mengubah warna latar belakang body */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Warna khas Lampung (Merah Tapis & Emas) */
+        .bg-lampung {
+            background-color: #153abf; /* Merah Tua */
+        }
+        
+        .text-lampung {
+            color: #248fe7; /* Kuning Emas */
+        }
+
+        /* Mengatur gambar kartu makanan agar tingginya sama */
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Efek hover lembut pada kartu */
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px #153abf
+        }
+
+        .display-5 {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+                /* Efek saat kartu diarahkan kursor */
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+        /* Mengubah font utama seluruh halaman ke Poppins */
+        body {
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.2px;
+        }
+
+        /* Mempercantik font judul agar lebih tegas */
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        
+
+ 
+

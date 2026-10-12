@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IcipLampung.com</title>
+
+    <!-- External CSS & Libraries -->
+     <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR (Hitam dengan Teks Kuning) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="#">
+                <i class="fa-solid fa-utensils text-warning me-2"></i>Lampung Foodies
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active text-warning fw-bold" href="#katalog">Katalog Menu</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning fw-bold" href="#review">Review</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BANNER UTAMA (HERO SECTION) -->
+    <div class="bg-dark text-white text-center py-5 px-3 position-relative" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/banner.jpg') center/cover;">
+        <div class="container py-4">
+            <h1 class="fw-bold display-5 text-warning">Spill Kuliner Enak Lampung</h1>
+            <p class="lead text-light">Explore cita rasa asli Sang Bumi Ruwa Jurai, lengkap dengan estimasi harga dan lokasi tempat makan.</p>
+        </div>
+    </div>
+
+    <!-- BAGIAN UTAMA KATALOG -->
+    <div class="container my-5" id="katalog">
+        
+        <!-- PENCARIAN & FILTER KATEGORI -->
+        <div class="row g-3 mb-4 align-items-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
+                    <input type="text" id="inputCari" class="form-control" placeholder="Cari nama makanan (contoh: Seruit, Keripik)..." onkeyup="cariMakanan()">
+                </div>
+            </div>
+
+            <div class="col-md-6 text-md-end">
+                <div class="btn-group flex-wrap" role="group">
+                    <button type="button" class="btn btn-outline-dark active text-warning fw-bold" onclick="filterKategori('semua', this)">Semua</button>
+                    <button type="button" class="btn btn-outline-dark" onclick="filterKategori('makanan', this)">Makanan</button>
+                    <button type="button" class="btn btn-outline-dark" onclick="filterKategori('cemilan', this)">Cemilan</button>
+                    <button type="button" class="btn btn-outline-dark" onclick="filterKategori('oleh-oleh', this)">Oleh-Oleh</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- WADAH KATALOG MAKANAN -->
+        <div class="row g-4" id="wadahKatalog">
+            <!-- Kartu makanan tampil via JavaScript -->
+        </div>
+
+        <!-- PESAN DATA KOSONG -->
+        <div id="pesanKosong" class="text-center py-5 d-none">
+            <i class="fa-solid fa-circle-exclamation text-muted display-4 mb-3"></i>
+            <h5>Makanan tidak ditemukan</h5>
+            <p class="text-muted">Coba ketik kata kunci pencarian yang lain.</p>
+        </div>
+    </div>
+
+    <!-- BAGIAN REVIEW / ULASAN JUJUR -->
+    <div class="bg-light py-5 border-top border-bottom" id="review">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <small class="text-dark fw-bold text-uppercase tracking-wide">KEJUJURAN RASA 📝</small>
+                    <h2 class="fw-bold mb-2 text-dark mt-1">Spill Jujur Pendapat Kamu</h2>
+                    <p class="text-muted mb-4">Pernah coba kuliner di Lampung? Bagikan ulasan jujurmu biar yang lain gak salah pilih!</p>
+                    
+                    <!-- FORM KIRIM ULASAN -->
+                    <div class="card p-4 shadow-sm border-0 text-start rounded-4 mb-5">
+                        <form id="formReview" onsubmit="tambahReview(event)">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-secondary small">NAMA KAMU / USERNAME</label>
+                                <input type="text" id="inputNama" class="form-control form-control-lg fs-6 bg-light" placeholder="Cth: Ratu Foodie" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-secondary small">KULINER / TEMPAT YANG DIULAS</label>
+                                <input type="text" id="inputKuliner" class="form-control form-control-lg fs-6 bg-light" placeholder="Cth: Seruit Pak Haji Teluk" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-secondary small">RATING BINTANG</label>
+                                <select id="inputRating" class="form-select form-select-lg fs-6 bg-light">
+                                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5/5 - Fix Enak Banget, No Debat!)</option>
+                                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4/5 - Enak & Recomended)</option>
+                                    <option value="⭐⭐⭐">⭐⭐⭐ (3/5 - Lumayan B Aja)</option>
+                                    <option value="⭐⭐">⭐⭐ (2/5 - Kurang Pas di Lidah)</option>
+                                    <option value="⭐">⭐ (1/5 - Zonk / Kecewa)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-secondary small">ULASAN JUJUR KAMU</label>
+                                <textarea id="inputUlasan" class="form-control bg-light" rows="3" placeholder="Ceritain rasanya, porsinya, atau suasananya disini..." required></textarea>
+                            </div>
+
+                            <!-- Tombol Kirim Ulasan Warna Hitam dengan Teks Kuning -->
+                            <button type="submit" class="btn btn-dark text-warning w-100 fw-bold py-3 rounded-3 fs-6">
+                                Kirim Ulasan 🚀
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- DAFTAR ULASAN TERBARU -->
+                    <div class="text-start">
+                        <h4 class="fw-bold mb-4 text-dark">Ulasan Terbaru Dari Komunitas</h4>
+                        <div id="daftarReview" class="d-flex flex-column gap-3">
+                            
+                            <!-- Card Ulasan 1 -->
+                            <div class="card p-3 border-0 shadow-sm rounded-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold mb-0 text-dark">arion</h6>
+                                    <span class="text-warning fs-6">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <small class="text-dark fw-bold mb-2">Seruit Lampung</small>
+                                <p class="text-secondary small mb-2">"Sumpah sambel tempoyak di sini nampol banget rasanya! Ikan bakarnya empuk dan gak amis. Wajib coba kalau ke Lampung!"</p>
+                                <small class="text-muted" style="font-size: 0.75rem;">Baru saja</small>
+                            </div>
+
+                            <!-- Card Ulasan 2 -->
+                            <div class="card p-3 border-0 shadow-sm rounded-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold mb-0 text-dark">jarvis</h6>
+                                    <span class="text-warning fs-6">⭐⭐⭐⭐</span>
+                                </div>
+                                <small class="text-dark fw-bold mb-2">Sekubal Ketan</small>
+                                <p class="text-secondary small mb-2">"Tekstur ketannya padat dan gurih santannya terasa banget. Cocok dicocol sambal atau tape ketan manis."</p>
+                                <small class="text-muted" style="font-size: 0.75rem;">Kemarin</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-1 fw-semibold text-warning">© 2026 Kuliner Khas Lampung - Demisya Hafizta H - Kurnia Zain</p>
+            <small class="text-muted">Dibuat menggunakan HTML, Bootstrap 5, dan JavaScript Sederhana.</small>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries & Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
